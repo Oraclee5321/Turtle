@@ -1,5 +1,5 @@
 fuelswap = false
-inv = {{"minecraft:coal", 2, 0}, {"enderstorage:ender_chest", 16, 1}}
+inv = {{"minecraft:coal", 2, 4}, {"enderstorage:ender_chest", 16, 1}}
 
 blacklist_blocks = {
       "minecraft:cobblestone",
@@ -69,7 +69,7 @@ function depositLoot ()
         turtle.drop()
     end
     turtle.select(2)
-    data = turtle.getItemDetail())
+    data = turtle.getItemDetail()
     turtle.select(1)
     turtle.dig()
     turtle.transferTo(16)
@@ -79,12 +79,40 @@ function depositLoot ()
     end
 end
 
+function mineDown ()
+    if turtle.detectDown() then
+        turtle.digDown()
+        turtle.down(1)
+        turtle.select(1)
+    if search(blacklist_blocks, turtle.getItemDetail()) then
+            turtle.drop()
+        end
+        turtle.select(1)
+        if turtle.getItemDetail() ~= nil then
+            item = turtle.getItemDetail()
+            if item.name == "minecraft:coal" then
+                if fuelswap == true then
+                    addFuel(item)
+                    fuelswap = false
+                else
+                    fuelswap = true
+                    moveItem(item)
+                end
+                moveItem(item)
+            end
+
+        end
+    else
+        turtle.down(1)
+    end
+end
+
 function mine ()
     if turtle.detect() then
         turtle.dig()
         turtle.forward(1)
         turtle.select(1)
-        if search(blacklist_blocks, turtle.getItemDetail() then
+        if search(blacklist_blocks, turtle.getItemDetail()) then
             turtle.drop()
         end
         turtle.select(1)
@@ -107,15 +135,34 @@ function mine ()
     end
 end
 
+function turnRight ()
+    turtle.turnRight()
+    mine()
+    turtle.turnRight()
+end
+
+function turnLeft ()
+    turtle.turnLeft()
+    mine()
+    turtle.turnLeft()
+end
+
 function chunkMine ()
-    for i = 1,98,1 do
-        for i = 1,16,1 do
-            for i = 1,16,1 do
+    for y = 2,99,1 do
+        for x = 1,15,1 do
+            for z = 1,15,1 do
                 mine()
             end
-            turtle.turnRight()
-            turtle.forward()
-            turtle.turnRight()
+            if math.fmod(x, 2) == 0 and math.fmod(y,2) == 0 then
+                turnRight()
+            else if math.fmod(x,2) == 0 and math.fmod(y,2) ~= 0 then
+                turnLeft()
+            else if math.fmod(x,2) ~= 0 and math.fmod(y,2) == 0 then
+                turnLeft()
+            else
+                turnRight()
+            end
         end
+        mineDown()
     end
 depositLoot()
