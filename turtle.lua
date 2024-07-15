@@ -29,7 +29,7 @@ function moveItem (item)
     end
     table.insert(inv, {itemname,#inv + 1, 1})
     turtle.transferTo(inv[#inv][2])
-    if #inv == 16 do
+    if #inv == 16 then
         depositLoot()
     end
     return -1 
@@ -84,7 +84,7 @@ function mine ()
         turtle.dig()
         turtle.forward(1)
         turtle.select(1)
-        if search(blacklist_blocks, turtle.getItemDetail()) then
+        if search(blacklist_blocks, turtle.getItemDetail() then
             turtle.drop()
         end
         turtle.select(1)
@@ -110,7 +110,12 @@ end
 function chunkMine ()
     for i = 1,98,1 do
         for i = 1,16,1 do
-            mine()
+            for i = 1,16,1 do
+                mine()
+            end
+            turtle.turnRight()
+            turtle.forward()
+            turtle.turnRight()
         end
     end
 depositLoot()
