@@ -155,12 +155,13 @@ function chunkMine ()
             end
             if math.fmod(x, 2) ~= 0 and math.fmod(y,2) ~= 0 then
                 turnRight()
-            else if math.fmod(x,2) == 0 and math.fmod(y,2) ~= 0 then
+            elseif math.fmod(x,2) == 0 and math.fmod(y,2) ~= 0 then
                 turnLeft()
-            else if math.fmod(x,2) ~= 0 and math.fmod(y,2) == 0 then
+            elseif math.fmod(x,2) ~= 0 and math.fmod(y,2) == 0 then
                 turnRight()
-            else if math.fmod(x,2) == 0 and math.fmod(y,2) == 0 then
+            elseif math.fmod(x,2) == 0 and math.fmod(y,2) == 0 then
                 turnLeft()
+            end
         end
         mineDown()
     end
