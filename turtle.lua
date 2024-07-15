@@ -1,5 +1,5 @@
 fuelswap = false
-inv = {{"minecraft:coal", 2, 0}, {"enderstorage:ender_chest", 16, 1}}
+inv = {{"minecraft:coal", 2, 0}, {"enderstorage:ender_chest", 16, 1} , {"enderstorage:ender_chest", 16, 1} , {"enderstorage:ender_chest", 16, 1} , {"enderstorage:ender_chest", 16, 1}}
 
 blacklist_blocks = {
       "minecraft:cobblestone",
@@ -74,7 +74,7 @@ function mine ()
             turtle.drop()
         end
         turtle.select(1)
-        if turtle.getItemDetail() != nil then
+        if turtle.getItemDetail() ~= nil then
             item = turtle.getItemDetail()
             if item.name == "minecraft:coal" then
                 if fuelswap == true then
