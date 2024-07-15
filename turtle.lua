@@ -1,5 +1,5 @@
 fuelswap = false
-inv = {{"minecraft:coal", 2, 0}, {"enderstorage:ender_chest", 16, 1} , {"enderstorage:ender_chest", 16, 1} , {"enderstorage:ender_chest", 16, 1} , {"enderstorage:ender_chest", 16, 1}}
+inv = {{"minecraft:coal", 2, 0}, {"enderstorage:ender_chest", 16, 1}}
 
 blacklist_blocks = {
       "minecraft:cobblestone",
@@ -20,18 +20,32 @@ function moveItem (item)
             if inv[i][j] == itemname then
                 turtle.transferTo(inv[i][2])
                 inv[i][3] = inv[i][3] + 1
+                if inv[i][3] >= 64 then
+                    depositLoot()
+                end
                 return true
             end
         end
     end
     table.insert(inv, {itemname,#inv + 1, 1})
     turtle.transferTo(inv[#inv][2])
+    if #inv == 16 do
+        depositLoot()
+    end
     return -1 
 end
-      
+
+function refuel ()
+    turtle.select(2)
+    turtle.refuel()
+end
+
 function addFuel ()
     turtle.transferTo(inv[1][2])
     inv[1][3] = inv[1][3] + 1
+    if inv[1][3] >= 32 then
+        refuel()
+    end
 end
 
 function search (block_list, item)
@@ -93,4 +107,10 @@ function mine ()
     end
 end
 
+function chunkMine ()
+    for i = 1,98,1 do
+        for i = 1,16,1 do
+            mine()
+        end
+    end
 depositLoot()
