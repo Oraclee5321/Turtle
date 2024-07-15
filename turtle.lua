@@ -1,5 +1,5 @@
 fuelswap = false
-inv = {{"minecraft:coal", 2, 0}}
+inv = {{"minecraft:coal", 2, 0}, {"enderstorage:ender_chest", 16, 1}}
 
 blacklist_blocks = {
       "minecraft:cobblestone",
@@ -43,7 +43,28 @@ function search (block_list, item)
     end
     return false
 end
-    
+
+function depositLoot ()
+    for i = 1, 2, +1 do
+        turtle.turnLeft()
+    end
+    turtle.select(16)
+    turtle.place()
+    for i=3,#inv do
+        turtle.select(i)
+        turtle.drop()
+    end
+    turtle.select(2)
+    data = turtle.getItemDetail())
+    turtle.select(1)
+    turtle.dig()
+    turtle.transferTo(16)
+    inv = {{"minecraft:coal", 2, data.count}, {"enderstorage:ender_chest", 16, 1}}
+    for i = 1, 2, +1 do
+        turtle.turnLeft()
+    end
+end
+
 function mine ()
     if turtle.detect() then
         turtle.dig()
@@ -71,3 +92,5 @@ function mine ()
         turtle.forward(1)
     end
 end
+
+depositLoot()
