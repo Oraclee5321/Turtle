@@ -45,7 +45,7 @@ function search (block_list, item)
 end
 
 function depositLoot ()
-    for i = 1, 2, +1 do
+    for i = 1, 2, 1 do
         turtle.turnLeft()
     end
     turtle.select(16)
@@ -60,7 +60,7 @@ function depositLoot ()
     turtle.dig()
     turtle.transferTo(16)
     inv = {{"minecraft:coal", 2, data.count}, {"enderstorage:ender_chest", 16, 1}}
-    for i = 1, 2, +1 do
+    for i = 1, 2, 1 do
         turtle.turnLeft()
     end
 end
