@@ -148,21 +148,22 @@ function turnLeft ()
 end
 
 function chunkMine ()
-    for y = 2,99,1 do
+    for y = 1,99,1 do
         for x = 1,15,1 do
             for z = 1,15,1 do
                 mine()
             end
-            if math.fmod(x, 2) == 0 and math.fmod(y,2) == 0 then
+            if math.fmod(x, 2) ~= 0 and math.fmod(y,2) ~= 0 then
                 turnRight()
             else if math.fmod(x,2) == 0 and math.fmod(y,2) ~= 0 then
                 turnLeft()
             else if math.fmod(x,2) ~= 0 and math.fmod(y,2) == 0 then
-                turnLeft()
-            else
                 turnRight()
-            end
+            else if math.fmod(x,2) == 0 and math.fmod(y,2) == 0 then
+                turnLeft()
         end
         mineDown()
     end
+end
+chunkMine()
 depositLoot()
