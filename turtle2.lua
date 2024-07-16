@@ -112,6 +112,6 @@ function dig() -- Move forward and Dig
 end
 
 for x=1,10,1 do
-    parallel.waitForAny(dig(), invCheck())
+    dig()
     print(x)
 end
