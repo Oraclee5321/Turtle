@@ -78,38 +78,40 @@ function checkCoal(item) -- Checks if item is coal
 end
 
 
-function invCheck() -- Check inventory event call
-    while true do
-        os.pullEvent("turtle_inventory")
-        print()
-        turtle.select(1)
-        item = turtle.getItemDetail()
-        if item ~= nil then
-            if search(blacklist_blocks,item) then
-                turtle.drop()
+function invCheck() -- Check inventory after dig
+    turtle.select(1)
+    item = turtle.getItemDetail()
+    if item ~= nil then
+        if search(blacklist_blocks,item) then
+            turtle.drop()
+        else
+            if checkCoal(item) and fuelswap then
+                addFuel(item)
+                fuelswap = false
+            elseif checkCoal(item) and not fuelswap then
+                fuelswap = true
+                moveItem(item)
             else
-                if checkCoal(item) and fuelswap then
-                    addFuel(item)
-                    fuelswap = false
-                elseif checkCoal(item) and not fuelswap then
-                    fuelswap = true
-                    moveItem(item)
-                else
-                    moveItem(item)
-                end
+                moveItem(item)
             end
         end
+    else
+        return false
     end
 end
 
 function dig() -- Move forward and Dig
     while not turtle.forward() do
         turtle.dig()
+        invCheck()
     end
     turtle.digUp()
+    invCheck()
     turtle.digDown()
+    invCheck()
 end
 
 for x=1,10,1 do
     parallel.waitForAny(dig(), invCheck())
+    print(x)
 end
