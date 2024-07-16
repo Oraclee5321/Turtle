@@ -84,19 +84,22 @@ function invCheck() -- Check inventory event call
         print()
         turtle.select(1)
         item = turtle.getItemDetail()
-        if search(blacklist_blocks,item) then
-            turtle.drop()
-        else
-            if checkCoal(item) and fuelswap then
-                addFuel(item)
-                fuelswap = false
-            elseif checkCoal(item) and not fuelswap then
-                fuelswap = true
-                moveItem(item)
+        if item ~= nil then
+            if search(blacklist_blocks,item) then
+                turtle.drop()
             else
-                moveItem(item)
+                if checkCoal(item) and fuelswap then
+                    addFuel(item)
+                    fuelswap = false
+                elseif checkCoal(item) and not fuelswap then
+                    fuelswap = true
+                    moveItem(item)
+                else
+                    moveItem(item)
+                end
             end
         end
+    end
 end
 
 function dig() -- Move forward and Dig
