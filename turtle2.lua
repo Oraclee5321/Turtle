@@ -81,9 +81,10 @@ end
 function invCheck() -- Check inventory event call
     while true do
         os.pullEvent("turtle_inventory")
+        print()
         turtle.select(1)
         item = turtle.getItemDetail()
-        if search(blacklist_blocks) then
+        if search(blacklist_blocks,item) then
             turtle.drop()
         else
             if checkCoal(item) and fuelswap then
@@ -106,5 +107,6 @@ function dig() -- Move forward and Dig
     turtle.digDown()
 end
 
-
-parallel.waitForAny(dig(), invCheck())
+for x=1,10,1 do
+    parallel.waitForAny(dig(), invCheck())
+end
