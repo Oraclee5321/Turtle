@@ -105,3 +105,6 @@ function dig() -- Move forward and Dig
     turtle.digUp()
     turtle.digDown()
 end
+
+
+parallel.waitForAny(dig(), invCheck())
