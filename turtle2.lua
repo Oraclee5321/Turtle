@@ -161,7 +161,18 @@ function chunkMine() -- Mine 16x16 Area
             for x=1,4,1 do
                 dig()
             end
-            if math.fmod(z,2) ~= 0 then
+            if z == 4 then
+                break
+            end
+            if math.fmod(z,2) ~= 0 and math.fmod(y,2) ~= 0  then
+                turtle.turnRight()
+                dig()
+                turtle.turnRight()
+            elseif math.fmod(z,2) ~= 0 and math.fmod(y,2) == 0  then
+                turtle.turnleft()
+                dig()
+                turtle.turnLeft()
+            elseif math.fmod(z,2) ~= 0 and math.fmod(y,2) == 0  then
                 turtle.turnRight()
                 dig()
                 turtle.turnRight()
