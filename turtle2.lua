@@ -24,10 +24,15 @@ function depositLoot () -- Deposit to Chest
     turtle.drop()
     turtle.select(2)
     data = turtle.getItemDetail()
+    if data = nil then
+        count = 0
+    else
+        count = data.count
+    end
     turtle.select(1)
     turtle.dig()
     turtle.transferTo(16)
-    inv = {{"minecraft:coal", 2, data.count}, {"enderstorage:ender_chest", 16, 1}}
+    inv = {{"minecraft:coal", 2, count}, {"enderstorage:ender_chest", 16, 1}}
     turtle.select(1)
     for i = 1, 2, 1 do
         turtle.turnLeft()
@@ -122,6 +127,13 @@ function invCheck() -- Check inventory after dig
     end
 end
 
+function down()
+    while not turtle.down() do
+        turtle.digDown()
+        invCheck()
+    end
+
+
 function dig() -- Move forward and Dig
     turtle.select(1)
     while not turtle.forward() do
@@ -137,7 +149,9 @@ function dig() -- Move forward and Dig
     invCheck()
 end
 
-for x=1,20,1 do
+for x=1,3,1 do
     dig()
-    print(x)
+end
+for x=1,3,1 do
+    down()
 end
