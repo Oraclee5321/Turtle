@@ -10,7 +10,7 @@ blacklist_blocks = {"minecraft:cobblestone",
 "minecraft:deepslate",
 "minecraft:diorite"}
 
-function depositLoot ()
+function depositLoot () -- Deposit to Chest
     for i = 1, 2, 1 do
         turtle.turnLeft()
     end
