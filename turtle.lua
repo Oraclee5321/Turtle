@@ -126,6 +126,7 @@ function mine ()
                     fuelswap = true
                     moveItem(item)
                 end
+            else
                 moveItem(item)
             end
             
