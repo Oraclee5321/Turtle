@@ -20,6 +20,8 @@ function depositLoot ()
         turtle.select(i)
         turtle.drop()
     end
+    turtle.select(1)
+    turtle.drop()
     turtle.select(2)
     data = turtle.getItemDetail()
     turtle.select(1)
