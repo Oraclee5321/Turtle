@@ -10,6 +10,26 @@ blacklist_blocks = {"minecraft:cobblestone",
 "minecraft:deepslate",
 "minecraft:diorite"}
 
+function depositLoot ()
+    for i = 1, 2, 1 do
+        turtle.turnLeft()
+    end
+    turtle.select(16)
+    turtle.place()
+    for i=3,#inv do
+        turtle.select(i)
+        turtle.drop()
+    end
+    turtle.select(2)
+    data = turtle.getItemDetail()
+    turtle.select(1)
+    turtle.dig()
+    turtle.transferTo(16)
+    inv = {{"minecraft:coal", 2, data.count}, {"enderstorage:ender_chest", 16, 1}}
+    for i = 1, 2, 1 do
+        turtle.turnLeft()
+    end
+end
 
 function refuel () -- Refuel
     turtle.select(2)
@@ -19,7 +39,6 @@ end
 function moveItem (item)
     local itemname = item.name
     for i = 3, #inv do
-        print(inv[i][1])
         for j = 1, #inv[i] do
             if inv[i][j] == itemname then
                 turtle.transferTo(inv[i][2])
@@ -111,7 +130,7 @@ function dig() -- Move forward and Dig
     invCheck()
 end
 
-for x=1,10,1 do
+for x=1,20,1 do
     dig()
     print(x)
 end
