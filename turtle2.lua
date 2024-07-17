@@ -132,6 +132,7 @@ function down()
         turtle.digDown()
         invCheck()
     end
+end
 
 
 function dig() -- Move forward and Dig
