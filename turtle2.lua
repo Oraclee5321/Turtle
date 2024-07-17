@@ -156,9 +156,9 @@ function dig() -- Move forward and Dig
 end
 
 function chunkMine() -- Mine 16x16 Area
-    for y=1,3,1 do
-        for z = 1,4,1 do
-            for x=1,3,1 do
+    for y=1,9,1 do
+        for z = 1,9,1 do
+            for x=1,8,1 do
                 dig()
             end
             if z == 4 then
@@ -172,7 +172,7 @@ function chunkMine() -- Mine 16x16 Area
                 turtle.turnLeft()
                 dig()
                 turtle.turnLeft()
-            elseif math.fmod(z,2) ~= 0 and math.fmod(y,2) == 0  then
+            elseif math.fmod(z,2) == 0 and math.fmod(y,2) == 0  then
                 turtle.turnRight()
                 dig()
                 turtle.turnRight()
