@@ -136,6 +136,12 @@ function down()
 
 function dig() -- Move forward and Dig
     turtle.select(1)
+    turtle.select(1)
+    turtle.digUp()
+    invCheck()
+    turtle.select(1)
+    turtle.digDown()
+    invCheck()
     while not turtle.forward() do
         turtle.select(1)
         turtle.dig()
@@ -154,9 +160,9 @@ for x=1,3,1 do
 end
 for x=1,3,1 do
     down()
-    turtle.turnRight()
-    turtle.turnRight()
 end
+turtle.turnRight()
+turtle.turnRight()
 for x=1,3,1 do
     dig()
 end
