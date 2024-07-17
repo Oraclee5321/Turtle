@@ -157,4 +157,6 @@ for x=1,3,1 do
     turtle.turnRight()
     turtle.turnRight()
 end
-dig()
+for x=1,3,1 do
+    dig()
+end
