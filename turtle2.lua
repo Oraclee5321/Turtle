@@ -24,7 +24,7 @@ function depositLoot () -- Deposit to Chest
     turtle.drop()
     turtle.select(2)
     data = turtle.getItemDetail()
-    if data = nil then
+    if data == nil then
         count = 0
     else
         count = data.count
@@ -78,13 +78,13 @@ end
 
 function turnRight () -- Turn Right
     turtle.turnRight()
-    mine()
+    dig()
     turtle.turnRight()
 end
       
 function turnLeft () -- Turn Left
     turtle.turnLeft()
-    mine()
+    dig()
     turtle.turnLeft()
 end
 
@@ -154,4 +154,7 @@ for x=1,3,1 do
 end
 for x=1,3,1 do
     down()
+    turtle.turnRight()
+    turtle.turnRight()
 end
+dig()
