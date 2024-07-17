@@ -155,14 +155,27 @@ function dig() -- Move forward and Dig
     invCheck()
 end
 
-for x=1,3,1 do
-    dig()
+function chunkMine() -- Mine 16x16 Area
+    for y=1,3,1 do
+        for z = 1,4,1 do
+            for x=1,4,1 do
+                dig()
+            end
+            if math.fmod(z,2) ~= 0 then
+                turtle.turnRight()
+                dig()
+                turtle.turnRight()
+            else
+                turtle.turnLeft()
+                dig()
+                turtle.turnLeft()
+            end
+        end
+        for i=1,3,1 do
+            down()
+        end
+        turtle.turnRight()
+        turtle.turnRight()
+    end
 end
-for x=1,3,1 do
-    down()
-end
-turtle.turnRight()
-turtle.turnRight()
-for x=1,3,1 do
-    dig()
-end
+
