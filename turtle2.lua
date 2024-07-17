@@ -186,10 +186,11 @@ function chunkMine() -- Mine 16x16 Area
         end
         for i=1,3,1 do
             down()
-        end
+            end
         turtle.turnRight()
         turtle.turnRight()
+        depositLoot()
     end
 end
-
+depositLoot()
 chunkMine()
