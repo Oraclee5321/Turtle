@@ -137,7 +137,6 @@ end
 
 function dig() -- Move forward and Dig
     turtle.select(1)
-    turtle.select(1)
     turtle.digUp()
     invCheck()
     turtle.select(1)
