@@ -8,7 +8,8 @@ blacklist_blocks = {"minecraft:cobblestone",
 "minecraft:gravel",
 "minecraft:tuff",
 "minecraft:deepslate",
-"minecraft:diorite"}
+"minecraft:diorite",
+"minecraft:cobbled_deepslate"}
 
 function depositLoot () -- Deposit to Chest
     for i = 1, 2, 1 do
