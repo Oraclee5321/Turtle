@@ -1,5 +1,5 @@
 fuelswap = false
-inv = {{"minecraft:coal", 2, 4}, {"enderstorage:ender_chest", 16, 1}}
+inv = {{"minecraft:coal", 2, 0}, {"enderstorage:ender_chest", 16, 1}}
 
 blacklist_blocks = {"minecraft:cobblestone",
 "minecraft:dirt",
@@ -42,9 +42,10 @@ end
 function refuel () -- Refuel
     turtle.select(2)
     turtle.refuel()
+    turtle.select(1)
 end
 
-function moveItem (item)
+function moveItem (item) -- Move Item to Inv Slot
     local itemname = item.name
     for i = 3, #inv do
         for j = 1, #inv[i] do
@@ -91,7 +92,7 @@ end
 function addFuel () -- Add Fuel to Fuel Slot
     turtle.transferTo(inv[1][2])
     inv[1][3] = inv[1][3] + 1
-    if inv[1][3] >= 32 then
+    if inv[1][3] >= 16 then
         refuel()
     end
 end
@@ -127,7 +128,7 @@ function invCheck() -- Check inventory after dig
     end
 end
 
-function down()
+function down() -- Turtle Go Down
     while not turtle.down() do
         turtle.digDown()
         invCheck()
@@ -190,3 +191,4 @@ function chunkMine() -- Mine 16x16 Area
     end
 end
 
+chunkMine()
